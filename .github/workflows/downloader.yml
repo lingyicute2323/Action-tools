@@ -17,7 +17,7 @@ jobs:
 
     steps:
     - name: Set up dependencies
-      run: apt install wget tree
+      run: sudo apt-get install wget tree
     - name: Run
       run: wget \${{ github.event.inputs.LINK }}
     - name: Tree

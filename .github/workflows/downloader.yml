@@ -1,0 +1,29 @@
+name: Downloader
+
+on:
+  workflow_dispatch:
+    inputs:
+      LINK:
+        description: 'The file link'
+        required: true
+      TYPE:
+        description: 'The file type'
+        required: true
+
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up dependencies
+      run: apt install wget tree
+    - name: Run
+      run: wget \${{ github.event.inputs.LINK }}
+    - name: Tree
+      run: tree -afs \${{ github.workspace }}
+    - name: Upload Aritfact (universal)
+      uses: actions/upload-artifact@v4
+      with:
+        name: Downloaded file zip
+        path: ${{ github.workspace }}/*.${{ github.event.inputs.TYPE }}

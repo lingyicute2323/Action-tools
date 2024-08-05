@@ -12,7 +12,7 @@ jobs:
       run: sudo apt-get install neofetch tree
     
     - name: Tree
-      run: sudo tree -afsh /home
+      run: sudo tree -ash -L 2 /home
         
     - name: Whoami
       run: whoami

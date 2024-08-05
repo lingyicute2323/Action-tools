@@ -22,7 +22,7 @@ jobs:
         cd ./tar-work
         
     - name: Wget
-      run: wget \${{ github.event.inputs.LINK }}
+      run: wget '${{ github.event.inputs.LINK }}'
       
     - name: Tree
       run: tree -afsh \${{ github.workspace }}

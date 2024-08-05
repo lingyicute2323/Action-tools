@@ -1,4 +1,4 @@
-name: Test
+name: System Test
 
 on:
   workflow_dispatch:
@@ -11,14 +11,14 @@ jobs:
     - name: Set up dependencies
       run: sudo apt-get install neofetch tree
     
-    - name: Tree at first
-      run: tree -afsh \${{ github.workspace }}
+    - name: Tree
+      run: sudo tree -afsh /home
         
     - name: Whoami
       run: whoami
+
+    - name: Uname
+      run: uname -a
       
     - name: Fetch
       run: neofetch
-    
-    - name: Tree after process
-      run: tree -afsh \${{ github.workspace }}

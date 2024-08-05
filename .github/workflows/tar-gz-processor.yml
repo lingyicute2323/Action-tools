@@ -6,7 +6,6 @@ on:
       LINK:
         description: 'The file link'
         required: true
-
       
 jobs:
   process:
@@ -17,26 +16,26 @@ jobs:
       run: sudo apt-get install wget tree tar gzip
     
     - name: Tree at first
-      run: tree -afsh \${{ github.workspace }}
+      run: tree -ash \${{ github.workspace }}
         
     - name: Wget
       run: wget -nv '${{ github.event.inputs.LINK }}'
       
     - name: Tree after wget
-      run: tree -afsh \${{ github.workspace }}
+      run: tree -ash \${{ github.workspace }}
       
     - name: Unzip
       run: tar -zxvf *.tar.gz
       
     - name: Tree after unzip
-      run: tree -afsh \${{ github.workspace }}
+      run: tree -ash \${{ github.workspace }}
 
     - name: Process
       run: |
         whoami
     
     - name: Tree after process
-      run: tree -afsh \${{ github.workspace }}
+      run: tree -ash \${{ github.workspace }}
       
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4

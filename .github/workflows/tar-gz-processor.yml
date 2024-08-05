@@ -15,7 +15,12 @@ jobs:
     steps:
     - name: Set up dependencies
       run: sudo apt-get install wget tree tar gzip
-      
+
+    - name: Cd
+      run: |
+        mkdir ./tar-work
+        cd ./tar-work
+        
     - name: Wget
       run: wget \${{ github.event.inputs.LINK }}
       
@@ -27,6 +32,8 @@ jobs:
       
     - name: Tree after unzip
       run: tree -afsh \${{ github.workspace }}
+
+    
       
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4

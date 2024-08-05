@@ -15,16 +15,14 @@ jobs:
     steps:
     - name: Set up dependencies
       run: sudo apt-get install wget tree tar gzip
-
-    - name: Cd
-      run: |
-        mkdir ./tar-work
-        cd ./tar-work
+    
+    - name: Tree at first
+      run: tree -afsh \${{ github.workspace }}
         
     - name: Wget
-      run: wget '${{ github.event.inputs.LINK }}'
+      run: wget -nv '${{ github.event.inputs.LINK }}'
       
-    - name: Tree
+    - name: Tree after wget
       run: tree -afsh \${{ github.workspace }}
       
     - name: Run
@@ -35,11 +33,10 @@ jobs:
 
     - name: Process
       run: |
-        rm -rf ./Z3150S/kernel-4.19/.git
-        rm -rf ./Z3150S/ntfs-3g/.git
-        rm -rf ./Z3150S/iptables/.git
-        rm -rf ./Z3150S/iproute2/.git
-        tree -afsh \${{ github.workspace }}
+        rm -rf 
+    
+    - name: Tree after process
+      run: tree -afsh \${{ github.workspace }}
       
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4

@@ -33,10 +33,16 @@ jobs:
     - name: Tree after unzip
       run: tree -afsh \${{ github.workspace }}
 
-    
+    - name: Process
+      run: |
+        rm -rf ./Z3150S/kernel-4.19/.git
+        rm -rf ./Z3150S/ntfs-3g/.git
+        rm -rf ./Z3150S/iptables/.git
+        rm -rf ./Z3150S/iproute2/.git
+        tree -afsh \${{ github.workspace }}
       
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4
       with:
         name: Downloaded file zip
-        path: ${{ github.workspace }}/*.${{ github.event.inputs.TYPE }}
+        path: ${{ github.workspace }}/Z3150S

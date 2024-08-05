@@ -6,9 +6,6 @@ on:
       LINK:
         description: 'The file link'
         required: true
-      TYPE:
-        description: 'The file type'
-        required: true
 
       
 jobs:
@@ -18,12 +15,19 @@ jobs:
     steps:
     - name: Set up dependencies
       run: sudo apt-get install wget tree tar gzip
+      
     - name: Wget
       run: wget \${{ github.event.inputs.LINK }}
+      
     - name: Tree
-      run: tree -afs \${{ github.workspace }}
+      run: tree -afsh \${{ github.workspace }}
+      
     - name: Run
-      run: tar -zxvf *.\${{ github.event.inputs.TYPE }}
+      run: tar -zxvf *.tar.gz
+      
+    - name: Tree after unzip
+      run: tree -afsh \${{ github.workspace }}
+      
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4
       with:

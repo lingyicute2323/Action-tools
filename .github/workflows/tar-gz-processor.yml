@@ -9,7 +9,7 @@ on:
 
       
 jobs:
-  build:
+  process:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
     - name: Tree after wget
       run: tree -afsh \${{ github.workspace }}
       
-    - name: Run
+    - name: Unzip
       run: tar -zxvf *.tar.gz
       
     - name: Tree after unzip
@@ -33,7 +33,7 @@ jobs:
 
     - name: Process
       run: |
-        rm -rf 
+        whoami
     
     - name: Tree after process
       run: tree -afsh \${{ github.workspace }}
@@ -42,4 +42,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Downloaded file zip
-        path: ${{ github.workspace }}/Z3150S
+        path: ${{ github.workspace }}/*

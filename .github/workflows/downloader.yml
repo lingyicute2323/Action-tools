@@ -6,9 +6,6 @@ on:
       LINK:
         description: 'The file link'
         required: true
-      TYPE:
-        description: 'The file type'
-        required: true
       
 jobs:
   build:
@@ -23,9 +20,12 @@ jobs:
       
     - name: Tree
       run: tree -ash \${{ github.workspace }}
+
+    - name: Rename
+      run: mv ./* down
       
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4
       with:
         name: Downloaded file zip
-        path: ${{ github.workspace }}/*.${{ github.event.inputs.TYPE }}*
+        path: ${{ github.workspace }}/down

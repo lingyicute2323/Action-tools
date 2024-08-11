@@ -30,7 +30,7 @@ jobs:
     - name: Tree after unzip
       run: tree -ash \${{ github.workspace }}
 
-    - name: Process
+    - name: Process commands
       run: |
         whoami
     
@@ -40,5 +40,5 @@ jobs:
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4
       with:
-        name: Downloaded file zip
+        name: Artifacts file zip
         path: ${{ github.workspace }}/*

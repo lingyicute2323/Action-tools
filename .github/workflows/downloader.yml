@@ -6,6 +6,9 @@ on:
       LINK:
         description: 'The file link'
         required: true
+      FILE:
+        description: 'The file name'
+        required: true
       
 jobs:
   build:
@@ -27,5 +30,5 @@ jobs:
     - name: Upload Aritfact (universal)
       uses: actions/upload-artifact@v4
       with:
-        name: Downloaded file zip
+        name: ${{ github.event.inputs.FILE }}
         path: ${{ github.workspace }}/down
